@@ -1,0 +1,11 @@
+{
+  "C_Cpp.default.compilerPath": "/usr/bin/gcc",
+  "C_Cpp.default.intelliSenseMode": "linux-gcc-x64",
+  "C_Cpp.default.cStandard": "c17",
+  "C_Cpp.default.includePath": [
+    "${workspaceFolder}/**",
+    "/usr/local/include",
+    "/usr/include",
+    "/usr/lib/gcc/x86_64-linux-gnu/*/include"
+  ]
+}
