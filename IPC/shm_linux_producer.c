@@ -75,6 +75,7 @@ int main(){
 	// Each char is 1 byte, so in the end with message0 we will have 10 bytes used in the shared memory, and ptr will point to the 11th byte, which is where we will write message1.
 	// \0 is the null terminator that marks the end of a string in C. When we write message0 to the shared memory, it includes the null terminator at the end of the string. So, after writing message0, we have 10 bytes used (9 characters + 1 null terminator), and ptr will point to the 11th byte, which is where we will write message1.
 	// It is done so that when the consumer process reads the shared memory, it can correctly identify the end of each message using the null terminator.
+	// However, to add this \0 I need to increment ptr by strlen(message0)+1, this +1 will give the null terminator.
 	sprintf(ptr,"%s",message1);
 	ptr += strlen(message1);
 	sprintf(ptr,"%s",message2);

@@ -54,3 +54,20 @@ int main(){
 /*
 	Primeiramente eu rodo o producer, cria o seguimento de memória compartilhado, escreve as mensagens e depois rodo o consumer, que lê as mensagens do segmento de memória compartilhado e depois de ler, o consumer chama shm_unlink() para remover o segmento de memória.
 */
+
+/*
+	Se fosse imprimir palavra por palavra com o null terminator, precisaria usar um código assim:
+
+	char *p = ptr_base;
+
+	printf("%s\n", p);              // message0
+	p += strlen(p) + 1;
+
+	printf("%s\n", p);              // message1
+	p += strlen(p) + 1;
+
+	printf("%s\n", p);              // message2
+
+	Isso acontece porque cada mensagem é armazenada na memória compartilhada com um null terminator ('\0') no final. O ponteiro p é inicialmente apontado para o início da região de memória compartilhada (ptr_base). A função printf() é usada para imprimir a mensagem atual, e depois o ponteiro p é incrementado em strlen(p) + 1 para avançar para a próxima mensagem, pulando o null terminator. Esse processo se repete até que todas as mensagens sejam impressas.
+	O strlen(p) começa em p, conta os caracteres até encontrar o null terminator, e o +1 é para pular o null terminator e apontar para o início da próxima mensagem.
+*/
