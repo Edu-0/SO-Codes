@@ -11,10 +11,10 @@
 
 int main()
 {
-	int fd1;
+	int fd1; // fd1 é o descritor de arquivo usado para acessar o FIFO. Ele é declarado como um inteiro e será usado para abrir, ler e escrever no FIFO.
 
 	// FIFO file path
-	char * myfifo = "/tmp/myfifo";
+	char * myfifo = "/tmp/myfifo"; // O caminho do FIFO é definido como "/tmp/myfifo". Este é o local onde o FIFO será criado e acessado pelos processos de leitura e escrita.
 
 	// Creating the named file(FIFO)
 	// mkfifo(<pathname>,<permission>)
