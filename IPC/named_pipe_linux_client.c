@@ -38,7 +38,7 @@ int main()
 
     // Send data to server
     printf("Entre com o dado a ser enviado: ");
-    fgets(buffer, sizeof(buffer), stdin);
+    fgets(buffer, sizeof(buffer), stdin); // Lê uma linha de entrada do usuário e armazena no buffer. A função fgets() é usada para ler uma string do stdin (entrada padrão) e armazená-la no buffer, garantindo que não haja estouro de buffer ao limitar a leitura ao tamanho do buffer. O tamanho máximo de leitura é definido como sizeof(buffer).
     if (write(sockfd, buffer, strlen(buffer) + 1) < 0)
     {
         perror("Falha em escrever no socket");
@@ -56,7 +56,7 @@ int main()
         return 1;
     }
 
-    printf("Dado recebido: %s\n", buffer);
+    printf("Dado recebido: %s\n", buffer); // Imprime o que foi lido do servidor no buffer, permitindo que o cliente veja a resposta enviada pelo servidor após processar os dados enviados pelo cliente.
 
     // Close socket and exit
     close(sockfd);
