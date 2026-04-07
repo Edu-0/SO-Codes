@@ -22,11 +22,11 @@ pthread_mutex_t em = PTHREAD_MUTEX_INITIALIZER;
 int alteraValor( int delta) {
 	int novo_valor;
 
-	pthread_mutex_lock(&em);
-	valor_total += delta;
-	novo_valor = valor_total;
-	printf("Somando %d ficarÃ¡ %d\n", delta, novo_valor);
-	pthread_mutex_unlock(&em);
+	pthread_mutex_lock(&em); // bloqueia o monitor
+	valor_total += delta; // atualiza o valor total com o delta passado
+	novo_valor = valor_total; // guarda o valor atualizado para mostrar na tela
+	printf("Somando %d ficarÃ¡ %d\n", delta, novo_valor); // mostra o valor atualizado na tela
+	pthread_mutex_unlock(&em); // libera o monitor para outras threads somarem ou subtrairem do valor total
 	return novo_valor;
 }
 /*************************************************************************/
