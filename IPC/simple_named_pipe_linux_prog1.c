@@ -20,7 +20,7 @@ int main()
     // mkfifo(<pathname>, <permission>)
     mkfifo(myfifo, 0666); // mkfifo() creates a FIFO passing the pathname and permission mode as arguments.
  
-    char arr1[80], arr2[80]; // Buffer to store data
+    char arr1[80], arr2[80]; // Buffer to store data de 80 caracteres para leitura e escrita. Em bytes.
     while (1)
     {
         // Open FIFO for write only

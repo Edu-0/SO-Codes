@@ -9,20 +9,20 @@
 #include <unistd.h>
 #include <string.h>
 #include <fcntl.h>
-#include <sys/shm.h>
-#include <sys/stat.h>
-#include <sys/mman.h>
-#include <sys/types.h>
+#include <sys/shm.h> // Shared memory segment control operations
+#include <sys/stat.h> // File status and permission constants
+#include <sys/mman.h> // Memory management declarations, including mmap() and related constants
+#include <sys/types.h> // Data types used in system calls, such as pid_t, off_t, etc.
 
 int main(){
-	const int SIZE = 4096;
-	const char *name = "OS";
+	const int SIZE = 4096; // Bytes
+	const char *name = "OS"; // Label, quando vou criar uma região de memória compartilhada, vou trabalhar com ponteiro, achar uma posição na memória é difícil e vou rotular para achar mais fácil. É alocado de maneira dinâmica e por isso n posso colocar números
 	const char *message0= "Studying ";
 	const char *message1= "Operating Systems ";
 	const char *message2= "Is Fun!";
 
-	int shm_fd;
-	void *ptr;
+	int shm_fd; // File directory, crio um arquivo.
+	void *ptr; // N vai ser estruturada na memória. Vai ser estruturado conforme retorno de função.
 
 	/* create the shared memory segment */
 	shm_fd = shm_open(name, O_CREAT | O_RDWR, 0666);
@@ -31,12 +31,13 @@ int main(){
 		The name argument specifies the name of the shared memory object. It must begin with a slash
 		O_CREAT: If the shared memory object does not exist, it will be created. If it already exists, this flag has no effect.
 		O_RDWR: Open the shared memory object for reading and writing.
-		0666: This sets the permissions for the shared memory object, allowing read and write
+		0b00001000 OR 0b01010000 = 0b01011000
+
+		0666: This sets the permissions for the shared memory object, allowing read and write. Usuário, público e grupo.
 	*/
 
 	/* configure the size of the shared memory segment */
 	ftruncate(shm_fd,SIZE); // ftruncate() is used to set the size of the shared memory object. It takes two arguments: the file descriptor of the shared memory object and the desired size in bytes. In this case, we set the size to 4096 bytes (4 KB).
-
 
 	/*
 		Um cria/abre o objeto de memória compartilhada usando shm_open()

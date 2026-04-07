@@ -42,12 +42,6 @@ int main(){
 		printf("Error removing %s\n",name);
 		exit(-1);
 	}
-
-	/*
-		shm_unlink irá deletar todo aquele espaço de memória compartilhado que foi criado quando mais nenhum processo estiver usando ele. Se um processo ainda estiver usando o shared memory, ele ainda poderá acessar os dados.
-		Quando todos os processos fecham e shm_unlink é chamado, tudo é destruído.
-	*/
-
 	return 0;
 }
 

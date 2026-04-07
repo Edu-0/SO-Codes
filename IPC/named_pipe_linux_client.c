@@ -23,10 +23,12 @@ int main()
     }
 
     // Connect to server
-    memset(&remote, 0, sizeof(remote));
+    memset(&remote, 0, sizeof(remote)); // Limpo memória colocando 0 para retirar lixo.
     remote.sun_family = AF_UNIX;
     strncpy(remote.sun_path, SOCK_PATH, sizeof(remote.sun_path) - 1);
     len = strlen(remote.sun_path) + sizeof(remote.sun_family);
+    // Sun path e sun family é o endereço do socket.
+    // I &remote é o que dirá que o endereço é o que está se conectando, e len é o tamanho do endereço.
     if (connect(sockfd, (struct sockaddr *)&remote, len) < 0)
     {
         perror("Falha em conectar no servidor");
